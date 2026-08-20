@@ -1,0 +1,41 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="mt-24 border-t border-brand-100 bg-brand-50">
+  <div class="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-3">
+    <div>
+      <p class="font-display text-lg font-semibold text-brand-800">Tierarztpraxis Musterstadt</p>
+      <p class="mt-2 text-sm text-brand-900/70">
+        Musterstraße 12<br />
+        12345 Musterstadt
+      </p>
+    </div>
+
+    <div>
+      <p class="font-semibold text-brand-800">Kontakt</p>
+      <ul class="mt-2 space-y-1 text-sm text-brand-900/70">
+        <li>Telefon: <a href="tel:+490000000000" class="hover:text-brand-600">0000 / 000 000</a></li>
+        <li>E-Mail: <a href="mailto:info@example.com" class="hover:text-brand-600">info@example.com</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="font-semibold text-brand-800">Öffnungszeiten (Kurzfassung)</p>
+      <ul class="mt-2 space-y-1 text-sm text-brand-900/70">
+        <li>Mo–Fr: 08:00–18:00 Uhr</li>
+        <li>Sa: 09:00–12:00 Uhr</li>
+      </ul>
+      <p class="mt-2 text-xs text-brand-900/50">Details siehe <a href="/kontakt" class="underline hover:text-brand-600">Kontaktseite</a>.</p>
+    </div>
+  </div>
+
+  <div class="border-t border-brand-100">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-4 text-xs text-brand-900/60 md:flex-row">
+      <p>&copy; {year} Tierarztpraxis Musterstadt</p>
+      <div class="flex gap-4">
+        <a href="/impressum" class="hover:text-brand-600">Impressum</a>
+        <a href="/datenschutz" class="hover:text-brand-600">Datenschutz</a>
+      </div>
+    </div>
+  </div>
+</footer>

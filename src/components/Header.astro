@@ -1,0 +1,71 @@
+---
+const navItems = [
+  { href: "/", label: "Startseite" },
+  { href: "/leistungen", label: "Leistungen" },
+  { href: "/ueber-uns", label: "Über uns" },
+  { href: "/kontakt", label: "Kontakt" },
+  { href: "/notfall", label: "Notfall" },
+];
+const currentPath = Astro.url.pathname;
+---
+<header class="sticky top-0 z-40 border-b border-brand-100 bg-white/90 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+    <a href="/" class="flex items-center gap-2 font-display text-lg font-semibold text-brand-800">
+      <img src="/favicon.svg" alt="" class="h-8 w-8" />
+      Tierarztpraxis Musterstadt
+    </a>
+
+    <nav class="hidden items-center gap-6 md:flex" aria-label="Hauptnavigation">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class={`text-sm font-medium transition-colors hover:text-brand-600 ${
+            currentPath === item.href ? "text-brand-700" : "text-brand-900/80"
+          }`}
+          aria-current={currentPath === item.href ? "page" : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a
+        href="/kontakt"
+        class="rounded-full bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+      >
+        Termin anfragen
+      </a>
+    </nav>
+
+    <button
+      id="mobile-menu-button"
+      class="inline-flex items-center justify-center rounded-md p-2 text-brand-800 md:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Menü öffnen"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <nav id="mobile-menu" class="hidden flex-col gap-1 border-t border-brand-100 bg-white px-4 py-2 md:hidden" aria-label="Mobile Navigation">
+    {navItems.map((item) => (
+      <a href={item.href} class="rounded-md px-2 py-2 text-sm font-medium text-brand-900/80 hover:bg-brand-50">
+        {item.label}
+      </a>
+    ))}
+    <a href="/kontakt" class="mt-1 rounded-md bg-brand-600 px-2 py-2 text-center text-sm font-semibold text-white">
+      Termin anfragen
+    </a>
+  </nav>
+</header>
+
+<script>
+  const button = document.getElementById("mobile-menu-button");
+  const menu = document.getElementById("mobile-menu");
+  button?.addEventListener("click", () => {
+    const isOpen = menu?.classList.toggle("flex");
+    menu?.classList.toggle("hidden");
+    button.setAttribute("aria-expanded", String(Boolean(isOpen)));
+  });
+</script>

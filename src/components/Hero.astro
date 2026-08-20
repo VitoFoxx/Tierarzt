@@ -1,0 +1,27 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+}
+const { title, subtitle, primaryCta, secondaryCta } = Astro.props;
+---
+<section class="bg-gradient-to-b from-brand-50 to-white">
+  <div class="mx-auto flex max-w-6xl flex-col items-start gap-6 px-4 py-16 md:py-24">
+    <h1 class="max-w-2xl text-3xl leading-tight md:text-5xl">{title}</h1>
+    <p class="max-w-xl text-lg text-brand-900/70">{subtitle}</p>
+    <div class="flex flex-wrap gap-3">
+      {primaryCta && (
+        <a href={primaryCta.href} class="rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700">
+          {primaryCta.label}
+        </a>
+      )}
+      {secondaryCta && (
+        <a href={secondaryCta.href} class="rounded-full border border-brand-300 px-6 py-3 text-sm font-semibold text-brand-800 hover:bg-brand-50">
+          {secondaryCta.label}
+        </a>
+      )}
+    </div>
+  </div>
+</section>

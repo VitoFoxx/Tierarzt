@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TeamMemberCard from "../components/TeamMemberCard.astro";
+import ScrollReveal from "../components/ScrollReveal.astro";
 
 const team = (await getCollection("team")).sort((a, b) => a.data.order - b.data.order);
 ---
@@ -15,10 +16,10 @@ const team = (await getCollection("team")).sort((a, b) => a.data.order - b.data.
     </div>
 
     <h2 class="mb-6 text-xl">Unser Team</h2>
-    <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+    <ScrollReveal class="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
       {team.map((member) => (
         <TeamMemberCard name={member.data.name} role={member.data.role} photo={member.data.photo} />
       ))}
-    </div>
+    </ScrollReveal>
   </section>
 </BaseLayout>

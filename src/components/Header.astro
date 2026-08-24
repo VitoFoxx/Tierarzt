@@ -29,7 +29,7 @@ const currentPath = Astro.url.pathname;
       ))}
       <a
         href="/kontakt"
-        class="rounded-full bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+        class="rounded-full bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700 active:scale-[0.98]"
       >
         Termin anfragen
       </a>
@@ -48,24 +48,35 @@ const currentPath = Astro.url.pathname;
     </button>
   </div>
 
-  <nav id="mobile-menu" class="hidden flex-col gap-1 border-t border-brand-100 bg-white px-4 py-2 md:hidden" aria-label="Mobile Navigation">
-    {navItems.map((item) => (
-      <a href={item.href} class="rounded-md px-2 py-2 text-sm font-medium text-brand-900/80 hover:bg-brand-50">
-        {item.label}
-      </a>
-    ))}
-    <a href="/kontakt" class="mt-1 rounded-md bg-brand-600 px-2 py-2 text-center text-sm font-semibold text-white">
-      Termin anfragen
-    </a>
-  </nav>
+  <div
+    id="mobile-menu-panel"
+    class="grid transition-[grid-template-rows] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none md:hidden"
+    style="grid-template-rows: 0fr;"
+  >
+    <div class="overflow-hidden">
+      <nav id="mobile-menu" class="flex flex-col gap-1 border-t border-brand-100 bg-white px-4 py-2" aria-label="Mobile Navigation" inert>
+        {navItems.map((item) => (
+          <a href={item.href} class="rounded-md px-2 py-2 text-sm font-medium text-brand-900/80 hover:bg-brand-50">
+            {item.label}
+          </a>
+        ))}
+        <a href="/kontakt" class="mt-1 rounded-md bg-brand-600 px-2 py-2 text-center text-sm font-semibold text-white active:scale-[0.98]">
+          Termin anfragen
+        </a>
+      </nav>
+    </div>
+  </div>
 </header>
 
 <script>
   const button = document.getElementById("mobile-menu-button");
+  const panel = document.getElementById("mobile-menu-panel");
   const menu = document.getElementById("mobile-menu");
+
   button?.addEventListener("click", () => {
-    const isOpen = menu?.classList.toggle("flex");
-    menu?.classList.toggle("hidden");
-    button.setAttribute("aria-expanded", String(Boolean(isOpen)));
+    const isOpen = panel?.style.gridTemplateRows === "1fr";
+    if (panel) panel.style.gridTemplateRows = isOpen ? "0fr" : "1fr";
+    if (menu) menu.inert = isOpen;
+    button.setAttribute("aria-expanded", String(!isOpen));
   });
 </script>

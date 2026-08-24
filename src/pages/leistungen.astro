@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ServiceCard from "../components/ServiceCard.astro";
+import ScrollReveal from "../components/ScrollReveal.astro";
 
 const services = (await getCollection("services")).sort((a, b) => a.data.order - b.data.order);
 ---
@@ -15,10 +16,10 @@ const services = (await getCollection("services")).sort((a, b) => a.data.order -
         können dort als Markdown-Datei ergänzt werden.
       </p>
     </div>
-    <div class="grid gap-6 md:grid-cols-3">
+    <ScrollReveal class="grid gap-6 md:grid-cols-3">
       {services.map((service) => (
-        <ServiceCard title={service.data.title} summary={service.data.summary} />
+        <ServiceCard title={service.data.title} summary={service.data.summary} icon={service.data.icon} />
       ))}
-    </div>
+    </ScrollReveal>
   </section>
 </BaseLayout>

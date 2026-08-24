@@ -5,6 +5,7 @@ import ScrollScene from "../components/ScrollScene.astro";
 import Hero from "../components/Hero.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import OpeningHours from "../components/OpeningHours.astro";
+import ScrollReveal from "../components/ScrollReveal.astro";
 
 const services = (await getCollection("services")).sort((a, b) => a.data.order - b.data.order);
 ---
@@ -24,11 +25,11 @@ const services = (await getCollection("services")).sort((a, b) => a.data.order -
         <h2 class="text-2xl md:text-3xl">Unsere Leistungen im Überblick</h2>
         <p class="mt-2 text-brand-900/70">Platzhaltertext: kurze Einleitung zum Leistungsangebot der Praxis.</p>
       </div>
-      <div class="grid gap-6 md:grid-cols-3">
+      <ScrollReveal class="grid gap-6 md:grid-cols-3">
         {services.map((service) => (
-          <ServiceCard title={service.data.title} summary={service.data.summary} href="/leistungen" />
+          <ServiceCard title={service.data.title} summary={service.data.summary} icon={service.data.icon} href="/leistungen" />
         ))}
-      </div>
+      </ScrollReveal>
     </section>
 
     <section class="mx-auto max-w-6xl px-4 pb-16">

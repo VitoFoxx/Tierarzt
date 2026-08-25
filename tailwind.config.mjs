@@ -30,7 +30,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
         display: ["Poppins", "ui-sans-serif", "system-ui", "sans-serif"],
       },
     },

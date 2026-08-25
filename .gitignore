@@ -6,6 +6,10 @@ dist/
 # dependencies
 node_modules/
 
+# python (skill scripts)
+__pycache__/
+*.pyc
+
 # environment variables
 .env
 .env.production

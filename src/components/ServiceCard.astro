@@ -19,8 +19,8 @@ const ICONS: Record<string, string> = {
 };
 const iconName = ICONS[icon] ?? ICONS.paw;
 ---
-<article class="flex flex-col gap-3 rounded-2xl border border-brand-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-100 text-brand-700">
+<article class="group flex flex-col gap-3 rounded-2xl border border-brand-100 bg-white p-6 shadow-sm transition-[transform,box-shadow] duration-150 hover:-translate-y-1 hover:shadow-md motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-100 text-brand-700 transition-transform duration-150 group-hover:scale-110 motion-reduce:transition-none motion-reduce:group-hover:scale-100">
     <Icon name={iconName} class="h-5 w-5" />
   </div>
   <h3 class="text-lg">{title}</h3>

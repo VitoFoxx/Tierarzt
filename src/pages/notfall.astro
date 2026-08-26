@@ -1,13 +1,36 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+
+const faqs = [
+  {
+    question: "Vorher anrufen",
+    answer:
+      "Platzhaltertext: Bitte kündigen Sie einen Notfall nach Möglichkeit vorher telefonisch an, damit wir uns auf Ihr Tier vorbereiten können.",
+  },
+  {
+    question: "Außerhalb der Öffnungszeiten",
+    answer:
+      "Platzhaltertext: Beschreibung der Erreichbarkeit außerhalb der regulären Öffnungszeiten, z. B. Vertretungsregelung oder Notdienst-Kooperation.",
+  },
+  {
+    question: "Was Sie mitbringen sollten",
+    answer:
+      "Platzhaltertext: Impfpass, bisherige Befunde/Medikamente sowie eine sichere Transportbox oder Leine, falls vorhanden.",
+  },
+  {
+    question: "Wann ist es ein echter Notfall?",
+    answer:
+      "Platzhaltertext: Beispiele für eindeutige Notfallsymptome (z. B. Atemnot, starke Blutungen, Vergiftungsverdacht, Unfall).",
+  },
+];
 ---
 <BaseLayout title="Notfall" description="Verhalten im Notfall und Notfallkontakt.">
   <section class="mx-auto max-w-3xl px-4 py-16">
     <h1 class="text-3xl md:text-4xl">Notfall</h1>
     <p class="mt-4 text-brand-900/70">
-      Platzhaltertext: Beschreibung, wie im Notfall vorzugehen ist (z. B. vorher
-      telefonisch ankündigen, Erreichbarkeit außerhalb der Öffnungszeiten,
-      Vertretungsregelung).
+      Platzhaltertext: Kurze Einleitung zum Verhalten im Notfall. Details dazu
+      finden Sie in den aufklappbaren Abschnitten unten.
     </p>
 
     <div class="mt-8 rounded-2xl border border-accent-200 bg-accent-50 p-6">
@@ -17,5 +40,26 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </p>
       <p class="mt-2 text-sm text-accent-800/80">Platzhalter-Notfallnummer – bitte durch echte Nummer ersetzen.</p>
     </div>
+
+    <div class="mt-10 divide-y divide-brand-100 rounded-2xl border border-brand-100 bg-white shadow-sm">
+      {faqs.map((faq) => (
+        <details class="group open:bg-brand-50/60 first:rounded-t-2xl last:rounded-b-2xl">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 text-sm font-semibold text-brand-900 marker:content-none">
+            {faq.question}
+            <Icon
+              name="ph:caret-down"
+              class="h-4 w-4 shrink-0 text-brand-600 transition-transform duration-150 group-open:rotate-180 motion-reduce:transition-none"
+            />
+          </summary>
+          <p class="px-6 pb-4 text-sm text-brand-900/70">{faq.answer}</p>
+        </details>
+      ))}
+    </div>
   </section>
 </BaseLayout>
+
+<style>
+  summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

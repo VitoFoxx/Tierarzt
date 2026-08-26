@@ -3,10 +3,12 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TeamMemberCard from "../components/TeamMemberCard.astro";
 import ScrollReveal from "../components/ScrollReveal.astro";
+import NoticeModal from "../components/NoticeModal.astro";
 
 const team = (await getCollection("team")).sort((a, b) => a.data.order - b.data.order);
 ---
 <BaseLayout title="Über uns" description="Lernen Sie unsere Praxis und unser Team kennen.">
+  <NoticeModal id="ueber-uns" message="Hier ist Platz für das Personal und die tierischen Helfer." />
   <section class="mx-auto max-w-6xl px-4 py-16">
     <div class="mb-10 max-w-2xl">
       <h1 class="text-3xl md:text-4xl">Über uns</h1>

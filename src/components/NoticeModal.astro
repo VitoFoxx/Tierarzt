@@ -1,0 +1,68 @@
+---
+interface Props {
+  id: string;
+  title?: string;
+  message: string;
+}
+const { id, title = "Hinweis", message } = Astro.props;
+---
+<div
+  id={`notice-${id}`}
+  class="notice-overlay fixed inset-0 z-50 hidden items-center justify-center bg-brand-900/40 p-4 backdrop-blur-sm"
+>
+  <div
+    class="notice-panel w-full max-w-md scale-95 rounded-2xl bg-white p-6 opacity-0 shadow-lg transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby={`notice-${id}-title`}
+  >
+    <h2 id={`notice-${id}-title`} class="text-lg">{title}</h2>
+    <p class="mt-2 text-sm text-brand-900/70">{message}</p>
+    <button
+      type="button"
+      data-notice-close
+      class="mt-5 rounded-full bg-brand-600 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700 active:scale-[0.98]"
+    >
+      Verstanden
+    </button>
+  </div>
+</div>
+
+<script define:vars={{ id }} is:inline>
+  const storageKey = `notice-dismissed-${id}`;
+  const overlay = document.getElementById(`notice-${id}`);
+  const panel = overlay?.querySelector(".notice-panel");
+  const closeButton = overlay?.querySelector("[data-notice-close]");
+
+  function show() {
+    if (!overlay || sessionStorage.getItem(storageKey)) return;
+    overlay.classList.remove("hidden");
+    overlay.classList.add("flex");
+    requestAnimationFrame(() => {
+      panel?.classList.remove("opacity-0", "scale-95");
+      panel?.classList.add("opacity-100", "scale-100");
+    });
+    closeButton?.focus();
+  }
+
+  function hide() {
+    if (!overlay) return;
+    panel?.classList.add("opacity-0", "scale-95");
+    panel?.classList.remove("opacity-100", "scale-100");
+    sessionStorage.setItem(storageKey, "1");
+    window.setTimeout(() => {
+      overlay.classList.add("hidden");
+      overlay.classList.remove("flex");
+    }, 300);
+  }
+
+  closeButton?.addEventListener("click", hide);
+  overlay?.addEventListener("click", (event) => {
+    if (event.target === overlay) hide();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") hide();
+  });
+
+  window.setTimeout(show, 1000);
+</script>

@@ -3,10 +3,12 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import ScrollReveal from "../components/ScrollReveal.astro";
+import NoticeModal from "../components/NoticeModal.astro";
 
 const services = (await getCollection("services")).sort((a, b) => a.data.order - b.data.order);
 ---
 <BaseLayout title="Leistungen" description="Übersicht unserer tierärztlichen Leistungen.">
+  <NoticeModal id="leistungen" message="Hier werden Ihre Leistungen ergänzt." />
   <section class="mx-auto max-w-6xl px-4 py-16">
     <div class="mb-10 max-w-2xl">
       <h1 class="text-3xl md:text-4xl">Unsere Leistungen</h1>

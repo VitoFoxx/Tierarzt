@@ -3,7 +3,6 @@ const navItems = [
   { href: "/", label: "Startseite" },
   { href: "/leistungen", label: "Leistungen" },
   { href: "/ueber-uns", label: "Über uns" },
-  { href: "/kontakt", label: "Kontakt" },
   { href: "/notfall", label: "Notfall" },
 ];
 const currentPath = Astro.url.pathname;
@@ -31,7 +30,7 @@ const currentPath = Astro.url.pathname;
         href="/kontakt"
         class="rounded-full bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700 active:scale-[0.98]"
       >
-        Termin anfragen
+        Kontakt
       </a>
     </nav>
 
@@ -61,7 +60,7 @@ const currentPath = Astro.url.pathname;
           </a>
         ))}
         <a href="/kontakt" class="mt-1 rounded-md bg-brand-600 px-2 py-2 text-center text-sm font-semibold text-white active:scale-[0.98]">
-          Termin anfragen
+          Kontakt
         </a>
       </nav>
     </div>

@@ -6,17 +6,22 @@ import Hero from "../components/Hero.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import OpeningHours from "../components/OpeningHours.astro";
 import ScrollReveal from "../components/ScrollReveal.astro";
+import NoticeModal from "../components/NoticeModal.astro";
 
 const services = (await getCollection("services")).sort((a, b) => a.data.order - b.data.order);
 ---
 <BaseLayout title="Startseite">
+  <NoticeModal
+    id="home"
+    message="Die Startseite kann nach Ihrem Wunsch befüllt werden! Es besteht auch die Möglichkeit, ein anderes Hintergrundvideo bzw. -bild zu verwenden."
+  />
   <ScrollScene />
 
   <div id="page-scroll-root" class="relative z-10">
     <Hero
       title="Einfühlsame tierärztliche Versorgung für Ihr Tier"
       subtitle="Von der Vorsorge bis zur Notfallbehandlung – wir sind für Hunde, Katzen und Kleintiere da. Platzhaltertext für die Startseiten-Einleitung."
-      primaryCta={{ label: "Termin anfragen", href: "/kontakt" }}
+      primaryCta={{ label: "Kontakt", href: "/kontakt" }}
       secondaryCta={{ label: "Leistungen ansehen", href: "/leistungen" }}
     />
 

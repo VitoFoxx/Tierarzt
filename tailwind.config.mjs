@@ -30,8 +30,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Nunito Sans", "ui-sans-serif", "system-ui", "sans-serif"],
-        display: ["Varela Round", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["Work Sans", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["Newsreader", "ui-serif", "Georgia", "serif"],
       },
     },
   },

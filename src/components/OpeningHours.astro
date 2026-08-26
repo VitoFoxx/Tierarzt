@@ -27,11 +27,13 @@ const hours = [
 </div>
 
 <script>
-  const today = new Date().getDay().toString();
-  const row = document.querySelector(`#opening-hours-list [data-day="${today}"]`);
-  if (row) {
-    row.classList.add("bg-brand-50");
-    row.querySelector("dt")?.classList.add("font-semibold", "text-brand-700");
-    row.querySelector("dd")?.classList.add("text-brand-700");
-  }
+  document.addEventListener("astro:page-load", () => {
+    const today = new Date().getDay().toString();
+    const row = document.querySelector(`#opening-hours-list [data-day="${today}"]`);
+    if (row) {
+      row.classList.add("bg-brand-50");
+      row.querySelector("dt")?.classList.add("font-semibold", "text-brand-700");
+      row.querySelector("dd")?.classList.add("text-brand-700");
+    }
+  });
 </script>

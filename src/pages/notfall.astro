@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Icon } from "astro-icon/components";
+import PawDivider from "../components/PawDivider.astro";
 
 const faqs = [
   {
@@ -26,14 +27,19 @@ const faqs = [
 ];
 ---
 <BaseLayout title="Notfall" description="Verhalten im Notfall und Notfallkontakt.">
-  <section class="mx-auto max-w-3xl px-4 py-16">
-    <h1 class="text-3xl md:text-4xl">Notfall</h1>
-    <p class="mt-4 text-brand-900/70">
-      Platzhaltertext: Kurze Einleitung zum Verhalten im Notfall. Details dazu
-      finden Sie in den aufklappbaren Abschnitten unten.
-    </p>
+  <div class="bg-gradient-to-b from-brand-100 via-brand-50/60 to-white">
+    <div class="mx-auto max-w-3xl px-4 pb-8 pt-16">
+      <h1 class="text-3xl md:text-4xl">Notfall</h1>
+      <p class="mt-4 text-brand-900/70">
+        Platzhaltertext: Kurze Einleitung zum Verhalten im Notfall. Details dazu
+        finden Sie in den aufklappbaren Abschnitten unten.
+      </p>
+    </div>
+  </div>
+  <PawDivider />
 
-    <div class="mt-8 rounded-2xl border border-accent-200 bg-accent-50 p-6">
+  <section class="mx-auto max-w-3xl px-4 pb-16 pt-2">
+    <div class="rounded-2xl border border-accent-200 bg-accent-50 p-6">
       <h2 class="text-lg text-accent-800">Notfallnummer</h2>
       <p class="mt-2 text-2xl font-semibold text-accent-700">
         <a href="tel:+490000000000">0000 / 000 000</a>

@@ -19,10 +19,17 @@
   const framePath = (index: number) =>
     `/scroll-scene/frame-${String(index + 1).padStart(3, "0")}.jpg`;
 
-  const canvas = document.getElementById("scroll-scene-canvas") as HTMLCanvasElement | null;
-  const ctx = canvas?.getContext("2d") ?? null;
+  let currentResizeHandler: (() => void) | null = null;
 
-  if (canvas && ctx) {
+  function initScrollScene() {
+    const canvas = document.getElementById("scroll-scene-canvas") as HTMLCanvasElement | null;
+    const ctx = canvas?.getContext("2d") ?? null;
+    if (!canvas || !ctx) return;
+
+    // Vorherige Instanz (falls per View Transition zurücknavigiert) sauber entfernen.
+    ScrollTrigger.getAll().forEach((st) => st.kill());
+    if (currentResizeHandler) window.removeEventListener("resize", currentResizeHandler);
+
     const state = { frame: 0 };
     const images: HTMLImageElement[] = [];
 
@@ -58,6 +65,7 @@
       drawFrame(Math.round(state.frame));
     }
 
+    currentResizeHandler = resizeCanvas;
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
@@ -84,8 +92,6 @@
         },
         onUpdate: () => drawFrame(Math.round(state.frame)),
       });
-
-      window.addEventListener("load", () => ScrollTrigger.refresh());
     });
 
     mm.add("(prefers-reduced-motion: reduce)", () => {
@@ -94,5 +100,9 @@
       if (images[lastIndex].complete) showLastFrame();
       else images[lastIndex].onload = showLastFrame;
     });
+
+    requestAnimationFrame(() => ScrollTrigger.refresh());
   }
+
+  document.addEventListener("astro:page-load", initScrollScene);
 </script>

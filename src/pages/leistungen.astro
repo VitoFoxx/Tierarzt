@@ -4,24 +4,36 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import ScrollReveal from "../components/ScrollReveal.astro";
 import NoticeModal from "../components/NoticeModal.astro";
+import PhilosophyBand from "../components/PhilosophyBand.astro";
+import PawDivider from "../components/PawDivider.astro";
 
 const services = (await getCollection("services")).sort((a, b) => a.data.order - b.data.order);
 ---
 <BaseLayout title="Leistungen" description="Übersicht unserer tierärztlichen Leistungen.">
   <NoticeModal id="leistungen" message="Hier werden Ihre Leistungen ergänzt." />
-  <section class="mx-auto max-w-6xl px-4 py-16">
-    <div class="mb-10 max-w-2xl">
-      <h1 class="text-3xl md:text-4xl">Unsere Leistungen</h1>
-      <p class="mt-3 text-brand-900/70">
-        Platzhaltertext: Einleitung zur Leistungsseite. Diese Liste wird aus den
-        Inhalten in <code>src/content/services</code> generiert – neue Leistungen
-        können dort als Markdown-Datei ergänzt werden.
-      </p>
+  <div class="bg-gradient-to-b from-brand-100 via-brand-50/60 to-white">
+    <div class="mx-auto max-w-6xl px-4 pb-8 pt-16">
+      <div class="max-w-2xl">
+        <h1 class="text-3xl md:text-4xl">Unsere Leistungen</h1>
+        <p class="mt-3 text-brand-900/70">
+          Platzhaltertext: Einleitung zur Leistungsseite. Diese Liste wird aus den
+          Inhalten in <code>src/content/services</code> generiert – neue Leistungen
+          können dort als Markdown-Datei ergänzt werden.
+        </p>
+      </div>
     </div>
+  </div>
+  <PawDivider />
+  <section class="mx-auto max-w-6xl px-4 pb-16">
     <ScrollReveal class="grid gap-6 md:grid-cols-3">
       {services.map((service) => (
         <ServiceCard title={service.data.title} summary={service.data.summary} icon={service.data.icon} />
       ))}
     </ScrollReveal>
   </section>
+
+  <PhilosophyBand
+    eyebrow="Unser Anspruch"
+    statement="Platzhaltertext: Wir behandeln jedes Tier so, als wäre es unser eigenes – mit Zeit, Ruhe und echter Sorgfalt statt Fließband-Medizin."
+  />
 </BaseLayout>

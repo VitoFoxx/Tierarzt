@@ -1,0 +1,22 @@
+---
+interface Props {
+  eyebrow?: string;
+  statement: string;
+}
+const { eyebrow, statement } = Astro.props;
+---
+<section class="relative isolate overflow-hidden bg-brand-900 py-20 text-brand-50">
+  <div
+    class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_15%,rgba(45,212,191,0.25),transparent_55%)]"
+    aria-hidden="true"
+  >
+  </div>
+  <div class="relative mx-auto max-w-3xl px-4 text-center">
+    {eyebrow && (
+      <p class="text-xs font-semibold uppercase tracking-[0.25em] text-brand-300">{eyebrow}</p>
+    )}
+    <p class="mt-4 font-display text-2xl italic leading-[1.35] text-brand-50 md:text-3xl">
+      {statement}
+    </p>
+  </div>
+</section>
